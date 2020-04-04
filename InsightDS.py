@@ -5,7 +5,7 @@ among academic research, insight projects, and hiring companies.
 '''
 
 from bs4 import BeautifulSoup
-import urllib
+from urllib.request import urlopen
 import re
 from itertools import chain
 import seaborn as sns
@@ -28,7 +28,7 @@ class InsightFellows(object):
             lists = []
             for i in range(1, self.n_pages+1):
                 url = self.link + str(i)
-                uh = urllib.request.urlopen(url)
+                uh = urlopen(url)
                 soup = BeautifulSoup(uh, 'html.parser')
                 soup = soup.find_all('div', class_=class_)
                 item_list = [info.text for info in soup]
